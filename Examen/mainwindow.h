@@ -25,6 +25,12 @@ public:
 private slots:
     void on_pushButton_2_clicked();
 
+    void on_pb_agregar_cliente_clicked();
+
+    void on_pb_agregar_producto_clicked();
+
+    void on_pb_ver_historial_clicked();
+
 private:
     Ui::MainWindow *ui;
 

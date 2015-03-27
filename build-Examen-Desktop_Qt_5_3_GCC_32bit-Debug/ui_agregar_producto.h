@@ -15,18 +15,23 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_agregar_producto
 {
 public:
+    QPushButton *pushButton;
 
     void setupUi(QDialog *agregar_producto)
     {
         if (agregar_producto->objectName().isEmpty())
             agregar_producto->setObjectName(QStringLiteral("agregar_producto"));
         agregar_producto->resize(400, 300);
+        pushButton = new QPushButton(agregar_producto);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(100, 70, 99, 27));
 
         retranslateUi(agregar_producto);
 
@@ -36,6 +41,7 @@ public:
     void retranslateUi(QDialog *agregar_producto)
     {
         agregar_producto->setWindowTitle(QApplication::translate("agregar_producto", "Dialog", 0));
+        pushButton->setText(QApplication::translate("agregar_producto", "PushButton", 0));
     } // retranslateUi
 
 };

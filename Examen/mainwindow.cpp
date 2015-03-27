@@ -4,6 +4,10 @@
 #include "producto.h"
 #include "cliente.h"
 #include <string>
+#include "agregar_cliente.h"
+#include "agregar_producto.h"
+#include <qmessagebox.h>
+#include "ver_historial.h"
 
 using std::string;
 using std::vector;
@@ -26,4 +30,33 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_2_clicked()
 {
 
+}
+
+void MainWindow::on_pb_agregar_cliente_clicked()
+{
+    Agregar_Cliente agregar_c(0,clientes);
+    agregar_c.setModal(true);
+    agregar_c.exec();
+}
+
+void MainWindow::on_pb_agregar_producto_clicked()
+{
+    if(clientes->size()>0){
+        agregar_producto agregar_p(0,productos,clientes,historial);
+        agregar_p.setModal(true);
+        agregar_p.exec();
+    }else{
+        QMessageBox::Information(this,tr("Error"),tr("No hay Clientes"));
+    }
+}
+
+void MainWindow::on_pb_ver_historial_clicked()
+{
+    if(historial->size()>0){
+        Ver_Historial ver_hist(0,historial);
+        ver_hist.setModal(true);
+        ver_hist.exec();
+    }else{
+        QMessageBox::Information(this,tr("Error"),tr("No hay historial"));
+    }
 }
