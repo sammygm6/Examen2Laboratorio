@@ -20,6 +20,9 @@ public:
     explicit Ver_Historial(QWidget *parent = 0,vector<string*>* historial=0);
     ~Ver_Historial();
 
+private slots:
+    void on_VerHistorial_clicked();
+
 private:
     Ui::Ver_Historial *ui;
     vector<string*>* historial;
