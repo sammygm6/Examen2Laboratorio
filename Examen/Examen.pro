@@ -16,26 +16,23 @@ SOURCES += main.cpp\
         agregar_producto.cpp \
         producto.cpp \
         productoeducativo.cpp \
-    agregar_producto_educativo.cpp \
-    agregar_producto_alcoholico.cpp \
-    agregar_producto_lujo.cpp \
     agregar_cliente.cpp \
-    ver_historial.cpp
+    ver_historial.cpp \
+    productoalcohol.cpp \
+    productolujo.cpp \
+    cliente.cpp
 
 HEADERS      += mainwindow.h \
         agregar_producto.h \
         producto.h \
         productoeducativo.h \
-    agregar_producto_educativo.h \
-    agregar_producto_alcoholico.h \
-    agregar_producto_lujo.h \
     agregar_cliente.h \
-    ver_historial.h
+    ver_historial.h \
+    productoalcohol.h \
+    productolujo.h \
+    cliente.h
 
 FORMS       += mainwindow.ui \
       agregar_producto.ui \
-    agregar_producto_educativo.ui \
-    agregar_producto_alcoholico.ui \
-    agregar_producto_lujo.ui \
     agregar_cliente.ui \
     ver_historial.ui
