@@ -46,7 +46,7 @@ void MainWindow::on_pb_agregar_producto_clicked()
         agregar_p.setModal(true);
         agregar_p.exec();
     }else{
-        QMessageBox::Information(this,tr("Error"),tr("No hay Clientes"));
+        QMessageBox::information(this,tr("Error"),tr("No hay Clientes"));
     }
 }
 
@@ -57,6 +57,6 @@ void MainWindow::on_pb_ver_historial_clicked()
         ver_hist.setModal(true);
         ver_hist.exec();
     }else{
-        QMessageBox::Information(this,tr("Error"),tr("No hay historial"));
+        QMessageBox::information(this,tr("Error"),tr("No hay historial"));
     }
 }
