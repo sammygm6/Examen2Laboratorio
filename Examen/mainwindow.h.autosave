@@ -2,10 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <vector>
-#include "Producto.h"
-
-using std::vector;
 
 namespace Ui {
 class MainWindow;
@@ -21,7 +17,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    vector<Producto*>* productos;
 };
 
 #endif // MAINWINDOW_H
