@@ -39,7 +39,10 @@ void agregar_producto::on_Agregar_clicked()
     //clientes->push_back(new Cliente(ui->ComboBoxCliente->currentText()));
 
     if(ui->cb_ap_tipo->currentIndex()==0){
-        ProductoEducativo* p_educativo=new ProductoEducativo(ui->SpinBoxVolumen->value(),ui->SpinboxPeso->value(),clientes->at(ui->ComboBoxCliente->currentIndex()), ui->SpinBoxTasa->value());
+        double peso=ui->SpinboxPeso->value();
+        double volumen=ui->SpinBoxVolumen->value();
+        double tasa=ui->SpinBoxTasa->value();
+        ProductoEducativo* p_educativo=new ProductoEducativo(volumen,peso,clientes->at(ui->ComboBoxCliente->currentIndex()), tasa);
         productos->push_back(p_educativo);
         stringstream ss;
         ss<< p_educativo->toString()<<" ,"<<p_educativo->CobrarImpuesto();
