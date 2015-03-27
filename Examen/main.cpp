@@ -13,8 +13,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     vector<Producto*>*productos;
     vector<string*>* historial;
-    vector<Ciente*>* cliente;
-    MainWindow w(0,productos,cliente,historial);
+    vector<Cliente*>* clientes;
+    MainWindow w(0,productos,clientes,historial);
     w.show();
 
     return a.exec();
