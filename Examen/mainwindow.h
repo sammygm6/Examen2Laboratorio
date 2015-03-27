@@ -3,16 +3,11 @@
 
 #include <QMainWindow>
 #include <vector>
-<<<<<<< HEAD
 #include "producto.h"
 #include "cliente.h"
 #include <string>
 
 using std::string;
-=======
-#include "Producto.h"
-
->>>>>>> c1edd9b06dfa5f685337ef5d712ca55e46bb5754
 using std::vector;
 
 namespace Ui {
@@ -32,13 +27,10 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-<<<<<<< HEAD
+
     vector<Producto*>*productos;
     vector<Cliente*>*clientes;
     vector<string*>*historial;
-=======
-    vector<Producto*>* productos;
->>>>>>> c1edd9b06dfa5f685337ef5d712ca55e46bb5754
 };
 
 #endif // MAINWINDOW_H

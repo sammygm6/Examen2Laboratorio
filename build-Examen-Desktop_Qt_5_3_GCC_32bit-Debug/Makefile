@@ -46,10 +46,18 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../Examen/main.cpp \
-		../Examen/mainwindow.cpp moc_mainwindow.cpp
+		../Examen/mainwindow.cpp \
+		../Examen/agregar_clientes.cpp \
+		../Examen/agregar_producto.cpp moc_mainwindow.cpp \
+		moc_agregar_clientes.cpp \
+		moc_agregar_producto.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
-		moc_mainwindow.o
+		agregar_clientes.o \
+		agregar_producto.o \
+		moc_mainwindow.o \
+		moc_agregar_clientes.o \
+		moc_agregar_producto.o
 DIST          = /home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/spec_pre.prf \
 		/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/common/shell-unix.conf \
 		/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/common/unix.conf \
@@ -158,7 +166,9 @@ DIST          = /home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/spec_pre.prf \
 		/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/yacc.prf \
 		/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/lex.prf \
 		../Examen/Examen.pro ../Examen/main.cpp \
-		../Examen/mainwindow.cpp
+		../Examen/mainwindow.cpp \
+		../Examen/agregar_clientes.cpp \
+		../Examen/agregar_producto.cpp
 QMAKE_TARGET  = Examen
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = Examen
@@ -188,7 +198,7 @@ first: all
 
 all: Makefile $(TARGET)
 
-$(TARGET): ui_mainwindow.h $(OBJECTS)  
+$(TARGET): ui_mainwindow.h ui_agregar_clientes.h ui_agregar_producto.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../Examen/Examen.pro /home/areyes/Qt5.3.1/5.3/gcc/mkspecs/linux-g++/qmake.conf /home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/spec_pre.prf \
@@ -421,7 +431,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/Examen1.0.0 || mkdir -p .tmp/Examen1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/mainwindow.h .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/main.cpp ../Examen/mainwindow.cpp .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/mainwindow.ui .tmp/Examen1.0.0/ && (cd `dirname .tmp/Examen1.0.0` && $(TAR) Examen1.0.0.tar Examen1.0.0 && $(COMPRESS) Examen1.0.0.tar) && $(MOVE) `dirname .tmp/Examen1.0.0`/Examen1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/Examen1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/mainwindow.h ../Examen/agregar_clientes.h ../Examen/agregar_producto.h .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/main.cpp ../Examen/mainwindow.cpp ../Examen/agregar_clientes.cpp ../Examen/agregar_producto.cpp .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/mainwindow.ui ../Examen/agregar_clientes.ui ../Examen/agregar_producto.ui .tmp/Examen1.0.0/ && (cd `dirname .tmp/Examen1.0.0` && $(TAR) Examen1.0.0.tar Examen1.0.0 && $(COMPRESS) Examen1.0.0.tar) && $(MOVE) `dirname .tmp/Examen1.0.0`/Examen1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/Examen1.0.0
 
 
 clean:compiler_clean 
@@ -444,9 +454,9 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_agregar_clientes.cpp moc_agregar_producto.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_agregar_clientes.cpp moc_agregar_producto.cpp
 moc_mainwindow.cpp: /home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QMainWindow \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qmainwindow.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qwidget.h \
@@ -553,13 +563,227 @@ moc_mainwindow.cpp: /home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QMainWindow \
 		../Examen/mainwindow.h
 	/home/areyes/Qt5.3.1/5.3/gcc/bin/moc $(DEFINES) -I/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/linux-g++ -I/home/areyes/Progra3/Segundo_Parcial/Examen2_Lab/Examen2Laboratorio/Examen -I/home/areyes/Qt5.3.1/5.3/gcc/include -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore -I. ../Examen/mainwindow.h -o moc_mainwindow.cpp
 
+moc_agregar_clientes.cpp: /home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QDialog \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qdialog.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qwindowdefs.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobal.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qconfig.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfeatures.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsystemdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qprocessordetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcompilerdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypeinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypetraits.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsysinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlogging.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qflags.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbasicatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_bootstrap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qgenericatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_msvc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv7.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv6.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv5.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_ia64.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_mips.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_x86.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_cxx11.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_gcc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_unix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobalstatic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmutex.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnumeric.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobjectdefs.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnamespace.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobjectdefs_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qwindowdefs_win.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobject.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstring.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qchar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbytearray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrefcount.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qarraydata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringbuilder.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlist.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qalgorithms.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qiterator.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcoreevent.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qscopedpointer.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmetatype.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvarlengtharray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcontainerfwd.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qisenum.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobject_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmargins.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpaintdevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrect.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsize.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qpoint.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpalette.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qcolor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qrgb.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringlist.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qdatastream.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qiodevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qpair.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qregexp.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringmatcher.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qbrush.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvector.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qmatrix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpolygon.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qregion.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qline.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtransform.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpainterpath.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qimage.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpixmap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsharedpointer.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qshareddata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsharedpointer_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qhash.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfont.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfontmetrics.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfontinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qsizepolicy.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qcursor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qkeysequence.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qevent.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvariant.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qdebug.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtextstream.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlocale.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qset.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcontiguouscache.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qurl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qurlquery.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfile.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
+		../Examen/agregar_clientes.h
+	/home/areyes/Qt5.3.1/5.3/gcc/bin/moc $(DEFINES) -I/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/linux-g++ -I/home/areyes/Progra3/Segundo_Parcial/Examen2_Lab/Examen2Laboratorio/Examen -I/home/areyes/Qt5.3.1/5.3/gcc/include -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore -I. ../Examen/agregar_clientes.h -o moc_agregar_clientes.cpp
+
+moc_agregar_producto.cpp: /home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QDialog \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qdialog.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qwindowdefs.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobal.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qconfig.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfeatures.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsystemdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qprocessordetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcompilerdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypeinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypetraits.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsysinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlogging.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qflags.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbasicatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_bootstrap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qgenericatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_msvc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv7.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv6.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv5.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_ia64.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_mips.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_x86.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_cxx11.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_gcc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_unix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobalstatic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmutex.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnumeric.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobjectdefs.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnamespace.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobjectdefs_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qwindowdefs_win.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobject.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstring.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qchar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbytearray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrefcount.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qarraydata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringbuilder.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlist.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qalgorithms.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qiterator.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcoreevent.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qscopedpointer.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmetatype.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvarlengtharray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcontainerfwd.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qisenum.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobject_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmargins.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpaintdevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrect.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsize.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qpoint.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpalette.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qcolor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qrgb.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringlist.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qdatastream.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qiodevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qpair.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qregexp.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringmatcher.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qbrush.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvector.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qmatrix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpolygon.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qregion.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qline.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtransform.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpainterpath.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qimage.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpixmap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsharedpointer.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qshareddata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsharedpointer_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qhash.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfont.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfontmetrics.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfontinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qsizepolicy.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qcursor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qkeysequence.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qevent.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvariant.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qdebug.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtextstream.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlocale.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qset.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcontiguouscache.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qurl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qurlquery.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfile.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
+		../Examen/agregar_producto.h
+	/home/areyes/Qt5.3.1/5.3/gcc/bin/moc $(DEFINES) -I/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/linux-g++ -I/home/areyes/Progra3/Segundo_Parcial/Examen2_Lab/Examen2Laboratorio/Examen -I/home/areyes/Qt5.3.1/5.3/gcc/include -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore -I. ../Examen/agregar_producto.h -o moc_agregar_producto.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainwindow.h
+compiler_uic_make_all: ui_mainwindow.h ui_agregar_clientes.h ui_agregar_producto.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_mainwindow.h
+	-$(DEL_FILE) ui_mainwindow.h ui_agregar_clientes.h ui_agregar_producto.h
 ui_mainwindow.h: ../Examen/mainwindow.ui
 	/home/areyes/Qt5.3.1/5.3/gcc/bin/uic ../Examen/mainwindow.ui -o ui_mainwindow.h
+
+ui_agregar_clientes.h: ../Examen/agregar_clientes.ui
+	/home/areyes/Qt5.3.1/5.3/gcc/bin/uic ../Examen/agregar_clientes.ui -o ui_agregar_clientes.h
+
+ui_agregar_producto.h: ../Examen/agregar_producto.ui
+	/home/areyes/Qt5.3.1/5.3/gcc/bin/uic ../Examen/agregar_producto.ui -o ui_agregar_producto.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -788,11 +1012,273 @@ mainwindow.o: ../Examen/mainwindow.cpp ../Examen/mainwindow.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtabwidget.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/QVariant \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QAction \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qaction.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qactiongroup.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QApplication \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcoreapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qeventloop.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qdesktopwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qguiapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qinputmethod.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QButtonGroup \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qbuttongroup.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QHeaderView \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qheaderview.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemview.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractscrollarea.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qframe.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qabstractitemmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qitemselectionmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemdelegate.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstyleoption.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractspinbox.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvalidator.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qregularexpression.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qslider.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractslider.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstyle.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtabbar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qrubberband.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QMenuBar \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qmenubar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qmenu.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QPushButton \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qpushbutton.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractbutton.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QStatusBar \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstatusbar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QToolBar \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtoolbar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QVBoxLayout \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qboxlayout.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qlayout.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qlayoutitem.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qgridlayout.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Examen/mainwindow.cpp
+
+agregar_clientes.o: ../Examen/agregar_clientes.cpp ../Examen/agregar_clientes.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QDialog \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qdialog.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qwindowdefs.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobal.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qconfig.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfeatures.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsystemdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qprocessordetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcompilerdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypeinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypetraits.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsysinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlogging.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qflags.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbasicatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_bootstrap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qgenericatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_msvc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv7.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv6.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv5.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_ia64.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_mips.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_x86.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_cxx11.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_gcc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_unix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobalstatic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmutex.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnumeric.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobjectdefs.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnamespace.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobjectdefs_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qwindowdefs_win.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobject.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstring.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qchar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbytearray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrefcount.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qarraydata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringbuilder.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlist.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qalgorithms.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qiterator.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcoreevent.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qscopedpointer.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmetatype.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvarlengtharray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcontainerfwd.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qisenum.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobject_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmargins.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpaintdevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrect.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsize.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qpoint.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpalette.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qcolor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qrgb.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringlist.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qdatastream.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qiodevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qpair.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qregexp.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringmatcher.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qbrush.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvector.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qmatrix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpolygon.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qregion.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qline.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtransform.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpainterpath.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qimage.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpixmap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsharedpointer.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qshareddata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsharedpointer_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qhash.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfont.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfontmetrics.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfontinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qsizepolicy.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qcursor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qkeysequence.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qevent.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvariant.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qdebug.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtextstream.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlocale.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qset.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcontiguouscache.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qurl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qurlquery.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfile.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
+		ui_agregar_clientes.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o agregar_clientes.o ../Examen/agregar_clientes.cpp
+
+agregar_producto.o: ../Examen/agregar_producto.cpp ../Examen/agregar_producto.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QDialog \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qdialog.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qwindowdefs.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobal.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qconfig.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfeatures.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsystemdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qprocessordetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcompilerdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypeinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypetraits.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsysinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlogging.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qflags.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbasicatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_bootstrap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qgenericatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_msvc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv7.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv6.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv5.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_ia64.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_mips.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_x86.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_cxx11.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_gcc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_unix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobalstatic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmutex.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnumeric.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobjectdefs.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnamespace.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobjectdefs_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qwindowdefs_win.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobject.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstring.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qchar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbytearray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrefcount.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qarraydata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringbuilder.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlist.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qalgorithms.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qiterator.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcoreevent.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qscopedpointer.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmetatype.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvarlengtharray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcontainerfwd.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qisenum.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qobject_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmargins.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpaintdevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrect.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsize.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qpoint.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpalette.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qcolor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qrgb.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringlist.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qdatastream.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qiodevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qpair.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qregexp.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringmatcher.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qbrush.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvector.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qmatrix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpolygon.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qregion.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qline.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtransform.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpainterpath.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qimage.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpixmap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsharedpointer.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qshareddata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsharedpointer_impl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qhash.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfont.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfontmetrics.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qfontinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qsizepolicy.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qcursor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qkeysequence.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qevent.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qvariant.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qdebug.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtextstream.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlocale.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qset.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcontiguouscache.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qurl.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qurlquery.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfile.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
+		ui_agregar_producto.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o agregar_producto.o ../Examen/agregar_producto.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_agregar_clientes.o: moc_agregar_clientes.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_agregar_clientes.o moc_agregar_clientes.cpp
+
+moc_agregar_producto.o: moc_agregar_producto.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_agregar_producto.o moc_agregar_producto.cpp
 
 ####### Install
 
