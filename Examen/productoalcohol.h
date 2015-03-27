@@ -11,7 +11,7 @@ public:
     ProductoAlcohol(const ProductoAlcohol&);
     ~ProductoAlcohol();
     virtual string toString()const;
-    virtual double CobrarImpuesto();
+    virtual double CobrarImpuesto()const;
     double getTasa()const;
     virtual void setTasa(double);
 };

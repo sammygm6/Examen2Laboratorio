@@ -27,9 +27,9 @@ string ProductoLujo::toString()const{
     ss << Producto::toString() << " Lujo: " << impuesto;
     return ss.str();
 }
-double ProductoLujo::CobrarImpuesto(){
-    impuesto = (getPeso()*getTasa()) + (getVolumen()*getTasa());
-    return (getPeso()*getTasa()) + (getVolumen()*getTasa());
+double ProductoLujo::CobrarImpuesto()const{
+    impuesto = (this->getPeso()*this->getTasa()) + (this->getVolumen()*this->getTasa());
+    return (this->getPeso()*getTasa()) + (this->getVolumen()*this->getTasa());
 }
 
 double ProductoLujo::getTasa()const{

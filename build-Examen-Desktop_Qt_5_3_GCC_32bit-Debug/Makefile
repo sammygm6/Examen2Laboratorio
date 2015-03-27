@@ -54,7 +54,8 @@ SOURCES       = ../Examen/main.cpp \
 		../Examen/ver_historial.cpp \
 		../Examen/productoalcohol.cpp \
 		../Examen/productolujo.cpp \
-		../Examen/cliente.cpp moc_mainwindow.cpp \
+		../Examen/cliente.cpp qrc_archivo.cpp \
+		moc_mainwindow.cpp \
 		moc_agregar_producto.cpp \
 		moc_agregar_cliente.cpp \
 		moc_ver_historial.cpp
@@ -68,6 +69,7 @@ OBJECTS       = main.o \
 		productoalcohol.o \
 		productolujo.o \
 		cliente.o \
+		qrc_archivo.o \
 		moc_mainwindow.o \
 		moc_agregar_producto.o \
 		moc_agregar_cliente.o \
@@ -329,6 +331,7 @@ Makefile: ../Examen/Examen.pro /home/areyes/Qt5.3.1/5.3/gcc/mkspecs/linux-g++/qm
 		/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/yacc.prf \
 		/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/lex.prf \
 		../Examen/Examen.pro \
+		../Examen/archivo.qrc \
 		/home/areyes/Qt5.3.1/5.3/gcc/lib/libQt5Widgets.prl \
 		/home/areyes/Qt5.3.1/5.3/gcc/lib/libQt5Gui.prl \
 		/home/areyes/Qt5.3.1/5.3/gcc/lib/libQt5Core.prl
@@ -441,6 +444,7 @@ Makefile: ../Examen/Examen.pro /home/areyes/Qt5.3.1/5.3/gcc/mkspecs/linux-g++/qm
 /home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/yacc.prf:
 /home/areyes/Qt5.3.1/5.3/gcc/mkspecs/features/lex.prf:
 ../Examen/Examen.pro:
+../Examen/archivo.qrc:
 /home/areyes/Qt5.3.1/5.3/gcc/lib/libQt5Widgets.prl:
 /home/areyes/Qt5.3.1/5.3/gcc/lib/libQt5Gui.prl:
 /home/areyes/Qt5.3.1/5.3/gcc/lib/libQt5Core.prl:
@@ -451,7 +455,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/Examen1.0.0 || mkdir -p .tmp/Examen1.0.0
-	$(COPY_FILE) --parents $(DIST) .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/mainwindow.h ../Examen/agregar_producto.h ../Examen/producto.h ../Examen/productoeducativo.h ../Examen/agregar_cliente.h ../Examen/ver_historial.h ../Examen/productoalcohol.h ../Examen/productolujo.h ../Examen/cliente.h .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/main.cpp ../Examen/mainwindow.cpp ../Examen/agregar_producto.cpp ../Examen/producto.cpp ../Examen/productoeducativo.cpp ../Examen/agregar_cliente.cpp ../Examen/ver_historial.cpp ../Examen/productoalcohol.cpp ../Examen/productolujo.cpp ../Examen/cliente.cpp .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/mainwindow.ui ../Examen/agregar_producto.ui ../Examen/agregar_cliente.ui ../Examen/ver_historial.ui .tmp/Examen1.0.0/ && (cd `dirname .tmp/Examen1.0.0` && $(TAR) Examen1.0.0.tar Examen1.0.0 && $(COMPRESS) Examen1.0.0.tar) && $(MOVE) `dirname .tmp/Examen1.0.0`/Examen1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/Examen1.0.0
+	$(COPY_FILE) --parents $(DIST) .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/archivo.qrc .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/mainwindow.h ../Examen/agregar_producto.h ../Examen/producto.h ../Examen/productoeducativo.h ../Examen/agregar_cliente.h ../Examen/ver_historial.h ../Examen/productoalcohol.h ../Examen/productolujo.h ../Examen/cliente.h .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/main.cpp ../Examen/mainwindow.cpp ../Examen/agregar_producto.cpp ../Examen/producto.cpp ../Examen/productoeducativo.cpp ../Examen/agregar_cliente.cpp ../Examen/ver_historial.cpp ../Examen/productoalcohol.cpp ../Examen/productolujo.cpp ../Examen/cliente.cpp .tmp/Examen1.0.0/ && $(COPY_FILE) --parents ../Examen/mainwindow.ui ../Examen/agregar_producto.ui ../Examen/agregar_cliente.ui ../Examen/ver_historial.ui .tmp/Examen1.0.0/ && (cd `dirname .tmp/Examen1.0.0` && $(TAR) Examen1.0.0.tar Examen1.0.0 && $(COMPRESS) Examen1.0.0.tar) && $(MOVE) `dirname .tmp/Examen1.0.0`/Examen1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/Examen1.0.0
 
 
 clean:compiler_clean 
@@ -472,8 +476,13 @@ mocables: compiler_moc_header_make_all compiler_moc_source_make_all
 
 check: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_archivo.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_archivo.cpp
+qrc_archivo.cpp: ../Examen/archivo.qrc \
+		../Examen/historial.txt
+	/home/areyes/Qt5.3.1/5.3/gcc/bin/rcc -name archivo ../Examen/archivo.qrc -o qrc_archivo.cpp
+
 compiler_moc_header_make_all: moc_mainwindow.cpp moc_agregar_producto.cpp moc_agregar_cliente.cpp moc_ver_historial.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_mainwindow.cpp moc_agregar_producto.cpp moc_agregar_cliente.cpp moc_ver_historial.cpp
@@ -686,6 +695,11 @@ moc_agregar_producto.cpp: /home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QDialog
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
+		../Examen/producto.h \
+		../Examen/cliente.h \
+		../Examen/productoalcohol.h \
+		../Examen/productoeducativo.h \
+		../Examen/productolujo.h \
 		../Examen/agregar_producto.h
 	/home/areyes/Qt5.3.1/5.3/gcc/bin/moc $(DEFINES) -I/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/linux-g++ -I/home/areyes/Progra3/Segundo_Parcial/Examen2_Lab/Examen2Laboratorio/Examen -I/home/areyes/Qt5.3.1/5.3/gcc/include -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore -I. ../Examen/agregar_producto.h -o moc_agregar_producto.cpp
 
@@ -790,6 +804,7 @@ moc_agregar_cliente.cpp: /home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QDialog 
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
+		../Examen/cliente.h \
 		../Examen/agregar_cliente.h
 	/home/areyes/Qt5.3.1/5.3/gcc/bin/moc $(DEFINES) -I/home/areyes/Qt5.3.1/5.3/gcc/mkspecs/linux-g++ -I/home/areyes/Progra3/Segundo_Parcial/Examen2_Lab/Examen2Laboratorio/Examen -I/home/areyes/Qt5.3.1/5.3/gcc/include -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui -I/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore -I. ../Examen/agregar_cliente.h -o moc_agregar_cliente.cpp
 
@@ -920,7 +935,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -1196,6 +1211,9 @@ mainwindow.o: ../Examen/mainwindow.cpp ../Examen/mainwindow.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QDialog \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qdialog.h \
 		../Examen/agregar_producto.h \
+		../Examen/productoalcohol.h \
+		../Examen/productoeducativo.h \
+		../Examen/productolujo.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qmessagebox.h \
 		../Examen/ver_historial.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Examen/mainwindow.cpp
@@ -1302,6 +1320,11 @@ agregar_producto.o: ../Examen/agregar_producto.cpp ../Examen/agregar_producto.h 
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
+		../Examen/producto.h \
+		../Examen/cliente.h \
+		../Examen/productoalcohol.h \
+		../Examen/productoeducativo.h \
+		../Examen/productolujo.h \
 		ui_agregar_producto.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/QVariant \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QAction \
@@ -1317,13 +1340,8 @@ agregar_producto.o: ../Examen/agregar_producto.cpp ../Examen/agregar_producto.h 
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qinputmethod.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QButtonGroup \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qbuttongroup.h \
-		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QHeaderView \
-		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qheaderview.h \
-		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemview.h \
-		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractscrollarea.h \
-		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qframe.h \
-		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qabstractitemmodel.h \
-		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qitemselectionmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QComboBox \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qcombobox.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemdelegate.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstyleoption.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractspinbox.h \
@@ -1334,7 +1352,24 @@ agregar_producto.o: ../Examen/agregar_producto.cpp ../Examen/agregar_producto.h 
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstyle.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtabbar.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtabwidget.h \
-		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qrubberband.h
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qrubberband.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qframe.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qabstractitemmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QDoubleSpinBox \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qspinbox.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QHeaderView \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qheaderview.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemview.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractscrollarea.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qitemselectionmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QLabel \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qlabel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QPushButton \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qpushbutton.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractbutton.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/QDebug \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/QFile \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/QTextStream
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o agregar_producto.o ../Examen/agregar_producto.cpp
 
 producto.o: ../Examen/producto.cpp ../Examen/producto.h \
@@ -1448,7 +1483,58 @@ agregar_cliente.o: ../Examen/agregar_cliente.cpp ../Examen/agregar_cliente.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
-		ui_agregar_cliente.h
+		../Examen/cliente.h \
+		ui_agregar_cliente.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/QVariant \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QAction \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qaction.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qicon.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qactiongroup.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QApplication \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcoreapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qeventloop.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qdesktopwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qguiapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qinputmethod.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QButtonGroup \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qbuttongroup.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QHBoxLayout \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qboxlayout.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qlayout.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qlayoutitem.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qgridlayout.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QHeaderView \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qheaderview.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemview.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractscrollarea.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qframe.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qabstractitemmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qitemselectionmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemdelegate.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstyleoption.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractspinbox.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvalidator.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qregularexpression.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qslider.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractslider.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstyle.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtabbar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtabwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qrubberband.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QLabel \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qlabel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QLineEdit \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qlineedit.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtextcursor.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtextformat.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qpen.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtextoption.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QPushButton \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qpushbutton.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractbutton.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QWidget \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qmessagebox.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o agregar_cliente.o ../Examen/agregar_cliente.cpp
 
 ver_historial.o: ../Examen/ver_historial.cpp ../Examen/ver_historial.h \
@@ -1553,17 +1639,92 @@ ver_historial.o: ../Examen/ver_historial.cpp ../Examen/ver_historial.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfiledevice.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvector2d.h \
 		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qtouchdevice.h \
-		ui_ver_historial.h
+		ui_ver_historial.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/QVariant \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QAction \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qaction.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qicon.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qactiongroup.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QApplication \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcoreapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qeventloop.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qdesktopwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qguiapplication.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qinputmethod.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QButtonGroup \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qbuttongroup.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/QHeaderView \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qheaderview.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemview.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractscrollarea.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qframe.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qabstractitemmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qitemselectionmodel.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractitemdelegate.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstyleoption.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractspinbox.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtGui/qvalidator.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qregularexpression.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qslider.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qabstractslider.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qstyle.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtabbar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qtabwidget.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtWidgets/qrubberband.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ver_historial.o ../Examen/ver_historial.cpp
 
-productoalcohol.o: ../Examen/productoalcohol.cpp ../Examen/productoalcohol.h
+productoalcohol.o: ../Examen/productoalcohol.cpp ../Examen/productoalcohol.h \
+		../Examen/producto.h \
+		../Examen/cliente.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o productoalcohol.o ../Examen/productoalcohol.cpp
 
-productolujo.o: ../Examen/productolujo.cpp ../Examen/productolujo.h
+productolujo.o: ../Examen/productolujo.cpp ../Examen/productolujo.h \
+		../Examen/producto.h \
+		../Examen/cliente.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/QString \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstring.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qchar.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobal.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qconfig.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qfeatures.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsystemdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qprocessordetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qcompilerdetection.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypeinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qtypetraits.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qsysinfo.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qlogging.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qflags.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbasicatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_bootstrap.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qgenericatomic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_msvc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv7.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv6.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_armv5.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_ia64.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_mips.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_x86.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_cxx11.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_gcc.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qatomic_unix.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qglobalstatic.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qmutex.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnumeric.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qbytearray.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qrefcount.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qnamespace.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qarraydata.h \
+		/home/areyes/Qt5.3.1/5.3/gcc/include/QtCore/qstringbuilder.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o productolujo.o ../Examen/productolujo.cpp
 
 cliente.o: ../Examen/cliente.cpp ../Examen/cliente.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cliente.o ../Examen/cliente.cpp
+
+qrc_archivo.o: qrc_archivo.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_archivo.o qrc_archivo.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
