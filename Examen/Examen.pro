@@ -36,3 +36,6 @@ FORMS       += mainwindow.ui \
       agregar_producto.ui \
     agregar_cliente.ui \
     ver_historial.ui
+
+RESOURCES += \
+    archivo.qrc

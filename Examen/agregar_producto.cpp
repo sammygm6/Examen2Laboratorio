@@ -8,6 +8,12 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <QDebug>
+#include <QFile>
+#include <QTextStream>
+#include <QApplication>
+
+
 
 using std::vector;
 using std::string;
@@ -17,8 +23,6 @@ agregar_producto::agregar_producto(QWidget *parent,vector<Producto*>*productos,v
     QDialog(parent),
     ui(new Ui::agregar_producto)
 {
-    productos = P;
-    clientes = C;
     ui->setupUi(this);
     this->productos=productos;
     this->clientes=clientes;
@@ -41,6 +45,21 @@ void agregar_producto::on_Agregar_clicked()
         ss<< p_educativo->toString()<<" ,"<<p_educativo->CobrarImpuesto();
         string histo=ss.str();
         historial->push_back(histo);
+        QString text;
+
+        QFile File_For_Writing(":/historial.txt");
+        File_For_Writing.open(QIODevice::WriteOnly | QIODevice::Truncate);
+
+        QTextStream text_stream_for_writing(&File_For_Writing);
+
+
+        text = histo;
+
+        text_stream_for_writing<<text;
+
+        File_For_Writing.close();
+
+        text.clear();
     }
 
     if(ui->cb_ap_tipo->currentIndex()==1){
@@ -50,6 +69,23 @@ void agregar_producto::on_Agregar_clicked()
         ss<< p_educativo->toString()<<" ,"<<p_alcohol->CobrarImpuesto();
         string histo=ss.str();
         historial->push_back(histo);
+        QString text;
+
+        QFile File_For_Writing(":/historial.txt");
+        File_For_Writing.open(QIODevice::WriteOnly | QIODevice::Truncate);
+
+        QTextStream text_stream_for_writing(&File_For_Writing);
+
+
+        text = histo;
+
+        text_stream_for_writing<<text;
+
+        File_For_Writing.close();
+
+        text.clear();
+
+
     }
 
     if(ui->cb_ap_tipo->currentIndex()==2){
@@ -58,6 +94,23 @@ void agregar_producto::on_Agregar_clicked()
         ss<< p_educativo->toString()<<" ,"<<p_lujo->CobrarImpuesto();
         string histo=ss.str();
         historial->push_back(histo);
+
+        QString text;
+
+        QFile File_For_Writing(":/historial.txt");
+        File_For_Writing.open(QIODevice::WriteOnly | QIODevice::Truncate);
+
+        QTextStream text_stream_for_writing(&File_For_Writing);
+
+
+        text = histo;
+
+        text_stream_for_writing<<text;
+
+        File_For_Writing.close();
+
+        text.clear();
+
     }
 
 }

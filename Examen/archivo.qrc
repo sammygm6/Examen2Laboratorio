@@ -1,2 +1,5 @@
-<RCC/>
-
+<RCC>
+    <qresource prefix="/">
+        <file>historial.txt</file>
+    </qresource>
+</RCC>
