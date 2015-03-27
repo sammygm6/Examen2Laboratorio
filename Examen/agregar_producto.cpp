@@ -17,6 +17,8 @@ agregar_producto::agregar_producto(QWidget *parent,vector<Producto*>*productos,v
     QDialog(parent),
     ui(new Ui::agregar_producto)
 {
+    productos = P;
+    clientes = C;
     ui->setupUi(this);
     this->productos=productos;
     this->clientes=clientes;

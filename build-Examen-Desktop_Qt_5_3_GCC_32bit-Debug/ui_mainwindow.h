@@ -31,10 +31,10 @@ public:
     QWidget *widget;
     QVBoxLayout *verticalLayout_2;
     QVBoxLayout *verticalLayout;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton;
-    QPushButton *pushButton_4;
+    QPushButton *pb_agregar_cliente;
+    QPushButton *pb_agregar_producto;
+    QPushButton *pb_ver_historial;
+    QPushButton *pb_salir;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -48,7 +48,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         widget = new QWidget(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 10, 144, 130));
+        widget->setGeometry(QRect(10, 30, 144, 130));
         verticalLayout_2 = new QVBoxLayout(widget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -57,28 +57,28 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        pushButton_2 = new QPushButton(widget);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pb_agregar_cliente = new QPushButton(widget);
+        pb_agregar_cliente->setObjectName(QStringLiteral("pb_agregar_cliente"));
 
-        verticalLayout->addWidget(pushButton_2);
+        verticalLayout->addWidget(pb_agregar_cliente);
 
-        pushButton_3 = new QPushButton(widget);
-        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pb_agregar_producto = new QPushButton(widget);
+        pb_agregar_producto->setObjectName(QStringLiteral("pb_agregar_producto"));
 
-        verticalLayout->addWidget(pushButton_3);
+        verticalLayout->addWidget(pb_agregar_producto);
 
-        pushButton = new QPushButton(widget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pb_ver_historial = new QPushButton(widget);
+        pb_ver_historial->setObjectName(QStringLiteral("pb_ver_historial"));
 
-        verticalLayout->addWidget(pushButton);
+        verticalLayout->addWidget(pb_ver_historial);
 
 
         verticalLayout_2->addLayout(verticalLayout);
 
-        pushButton_4 = new QPushButton(widget);
-        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pb_salir = new QPushButton(widget);
+        pb_salir->setObjectName(QStringLiteral("pb_salir"));
 
-        verticalLayout_2->addWidget(pushButton_4);
+        verticalLayout_2->addWidget(pb_salir);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -93,6 +93,7 @@ public:
         MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
+        QObject::connect(pb_salir, SIGNAL(clicked()), MainWindow, SLOT(close()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -100,10 +101,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QString());
-        pushButton_2->setText(QApplication::translate("MainWindow", "Agregar Producto", 0));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Ver Historial", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Agregar Cliente", 0));
-        pushButton_4->setText(QApplication::translate("MainWindow", "Salir", 0));
+        pb_agregar_cliente->setText(QApplication::translate("MainWindow", "Agregar Cliente", 0));
+        pb_agregar_producto->setText(QApplication::translate("MainWindow", "Agregar Producto", 0));
+        pb_ver_historial->setText(QApplication::translate("MainWindow", "Ver Historial", 0));
+        pb_salir->setText(QApplication::translate("MainWindow", "Salir", 0));
     } // retranslateUi
 
 };
