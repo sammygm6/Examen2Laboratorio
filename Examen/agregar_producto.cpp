@@ -39,11 +39,11 @@ void agregar_producto::on_Agregar_clicked()
     //clientes->push_back(new Cliente(ui->ComboBoxCliente->currentText()));
 
     if(ui->cb_ap_tipo->currentIndex()==0){
-        ProductoEducativo* p_educativo=new ProductoEducativo(ui->SpinBoxVolumen->value(), ui->SpinboxPeso->value(),clientes->at(ui->ComboBoxCliente->currentIndex()), ui->SpinBoxTasa->value());
-        productos.push_back(p_educativo);
+        ProductoEducativo* p_educativo=new ProductoEducativo(ui->SpinBoxVolumen->value(),ui->SpinboxPeso->value(),clientes->at(ui->ComboBoxCliente->currentIndex()), ui->SpinBoxTasa->value());
+        productos->push_back(p_educativo);
         stringstream ss;
         ss<< p_educativo->toString()<<" ,"<<p_educativo->CobrarImpuesto();
-        string histo=ss.str();
+        string* histo=new string(ss.str());
         historial->push_back(histo);
         QString text;
 
@@ -53,7 +53,7 @@ void agregar_producto::on_Agregar_clicked()
         QTextStream text_stream_for_writing(&File_For_Writing);
 
 
-        text = histo;
+        text = histo->c_str();
 
         text_stream_for_writing<<text;
 
@@ -63,11 +63,11 @@ void agregar_producto::on_Agregar_clicked()
     }
 
     if(ui->cb_ap_tipo->currentIndex()==1){
-        ProductoAlcohol* p_alcohol = new ProductoEducativo(ui->SpinBoxVolumen->value(), ui->SpinboxPeso->value(),clientes->at(ui->ComboBoxCliente->currentIndex()), ui->SpinBoxTasa->value());
-        productos.push_back(p_alcohol);
+        ProductoAlcohol* p_alcohol = new ProductoAlcohol(ui->SpinBoxVolumen->value(), ui->SpinboxPeso->value(),clientes->at(ui->ComboBoxCliente->currentIndex()), ui->SpinBoxTasa->value());
+        productos->push_back(p_alcohol);
         stringstream ss;
-        ss<< p_educativo->toString()<<" ,"<<p_alcohol->CobrarImpuesto();
-        string histo=ss.str();
+        ss<< p_alcohol->toString()<<" ,"<<p_alcohol->CobrarImpuesto();
+        string* histo=new string(ss.str());
         historial->push_back(histo);
         QString text;
 
@@ -77,7 +77,7 @@ void agregar_producto::on_Agregar_clicked()
         QTextStream text_stream_for_writing(&File_For_Writing);
 
 
-        text = histo;
+        text = histo->c_str();
 
         text_stream_for_writing<<text;
 
@@ -91,8 +91,8 @@ void agregar_producto::on_Agregar_clicked()
     if(ui->cb_ap_tipo->currentIndex()==2){
         Producto* p_lujo = new ProductoLujo(ui->SpinBoxVolumen->value(), ui->SpinboxPeso->value(),clientes->at(ui->ComboBoxCliente->currentIndex()), ui->SpinBoxTasa->value());
         stringstream ss;
-        ss<< p_educativo->toString()<<" ,"<<p_lujo->CobrarImpuesto();
-        string histo=ss.str();
+        ss<< p_lujo->toString()<<" ,"<<p_lujo->CobrarImpuesto();
+        string* histo=new string(ss.str());
         historial->push_back(histo);
 
         QString text;
@@ -103,7 +103,7 @@ void agregar_producto::on_Agregar_clicked()
         QTextStream text_stream_for_writing(&File_For_Writing);
 
 
-        text = histo;
+        text = histo->c_str();
 
         text_stream_for_writing<<text;
 

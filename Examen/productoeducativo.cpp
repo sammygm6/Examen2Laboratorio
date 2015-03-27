@@ -15,7 +15,7 @@ ProductoEducativo::ProductoEducativo(double volumen,double peso,Cliente cliente,
 }
 
 double ProductoEducativo::CobrarImpuesto()const{
-    return getVolumen() * tasa;
+    return this->getVolumen() * tasa;
 }
 
 double ProductoEducativo::getTasa()const{

@@ -14,7 +14,7 @@ public:
     ProductoLujo(const ProductoLujo&);
     ~ProductoLujo();
     virtual string toString()const;
-    virtual double CobrarImpuesto();
+    virtual double CobrarImpuesto()const;
     virtual double getTasa()const;
     virtual void setTasa(double);
 };

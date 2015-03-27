@@ -25,8 +25,8 @@ string ProductoAlcohol::toString()const{
     ss.str();
 }
 
-double ProductoAlcohol::CobrarImpuesto(){
-
+double ProductoAlcohol::CobrarImpuesto()const{
+    return (this->getPeso()+this->getVolumen())*tasa;
 }
 
 double ProductoAlcohol::getTasa()const{
