@@ -3,7 +3,7 @@
 
 using std::stringstream;
 
-Producto::Producto(double volumen,double peso, Cliente cliente)
+Producto::Producto(double volumen,double peso, Cliente& cliente)
     :volumen(volumen), peso(peso), cliente(cliente){
 
 
@@ -38,6 +38,6 @@ Producto::~Producto()
 }
 string Producto::toString()const{
     stringstream ss;
-    ss << "Nombre: " << cliente.getNombre() << " Volumen:" << volumen << " Peso: " << peso << " ";
+    ss << "Nombre: " << cliente.GetNombre() << " Volumen:" << volumen << " Peso: " << peso << " ";
     return ss.str();
 }

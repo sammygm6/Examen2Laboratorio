@@ -10,7 +10,7 @@ class ProductoLujo : public Producto
     double tasa;
     double impuesto;
 public:
-    ProductoLujo(double,double,Cliente,double);
+    ProductoLujo(double,double,Cliente&,double);
     ProductoLujo(const ProductoLujo&);
     ~ProductoLujo();
     virtual string toString()const;

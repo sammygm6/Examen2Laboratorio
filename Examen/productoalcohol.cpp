@@ -5,7 +5,7 @@
 
 using std::stringstream;
 
-ProductoAlcohol::ProductoAlcohol(double volumen,double peso, Cliente cliente,double tasa)
+ProductoAlcohol::ProductoAlcohol(double volumen,double peso, Cliente& cliente,double tasa)
     :Producto(volumen,peso,cliente),tasa(tasa){
 
 }

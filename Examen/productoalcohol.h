@@ -7,7 +7,7 @@ class ProductoAlcohol : public Producto
 {
     double tasa;
 public:
-    ProductoAlcohol(double,double,Cliente,double);
+    ProductoAlcohol(double,double,Cliente&,double);
     ProductoAlcohol(const ProductoAlcohol&);
     ~ProductoAlcohol();
     virtual string toString()const;

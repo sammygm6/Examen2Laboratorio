@@ -1,15 +1,16 @@
 #include "producto.h"
 #include "productoeducativo.h"
 #include <sstream>
+#include "cliente.h"
 
 using std::stringstream;
 
-ProductoEducativo::ProductoEducativo()
-{
+ProductoEducativo::ProductoEducativo(const ProductoEducativo& other)
+    :Producto(other),tasa(other.tasa){
 
 }
 
-ProductoEducativo::ProductoEducativo(double volumen,double peso,Cliente cliente,double tasa )
+ProductoEducativo::ProductoEducativo(double volumen,double peso,Cliente& cliente,double tasa )
     :Producto(volumen,peso,cliente),tasa(tasa){
 
 }
@@ -36,3 +37,4 @@ ProductoEducativo::toString()const{
     ss << Producto::toString() << " Educativo: " << CobrarImpuesto();
     return ss.str();
 }
+

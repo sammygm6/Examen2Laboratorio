@@ -9,8 +9,8 @@ class ProductoEducativo: public Producto
     double tasa;
     double impuesto;
 public:
-    ProductoEducativo(double,double, Cliente,double);
-    ProductoEducativo();
+    ProductoEducativo(double,double, Cliente&,double);
+    ProductoEducativo(const ProductoEducativo&);
     virtual double CobrarImpuesto()const;
     double getTasa()const;
     double setTasa(double);

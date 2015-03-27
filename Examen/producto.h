@@ -12,7 +12,7 @@ class Producto
     Cliente cliente;
 
 public:
-    Producto(double,double,Cliente);
+    Producto(double,double,Cliente&);
     Producto();
     ~Producto();
     virtual string toString()const=0;

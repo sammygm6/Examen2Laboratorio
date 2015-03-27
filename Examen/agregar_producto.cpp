@@ -37,9 +37,13 @@ agregar_producto::~agregar_producto()
 void agregar_producto::on_Agregar_clicked()
 {
     //clientes->push_back(new Cliente(ui->ComboBoxCliente->currentText()));
-
+/*
     if(ui->cb_ap_tipo->currentIndex()==0){
-        ProductoEducativo* p_educativo=new ProductoEducativo(ui->SpinBoxVolumen->value(),ui->SpinboxPeso->value(),clientes->at(ui->ComboBoxCliente->currentIndex()), ui->SpinBoxTasa->value());
+        ProductoEducativo* p_educativo=
+                new ProductoEducativo(ui->SpinBoxVolumen->value(),
+                                      ui->SpinboxPeso->value(),
+                                      clientes->at(ui->ComboBoxCliente->currentIndex()),
+                                      ui->SpinBoxTasa->value());
         productos->push_back(p_educativo);
         stringstream ss;
         ss<< p_educativo->toString()<<" ,"<<p_educativo->CobrarImpuesto();
@@ -60,6 +64,7 @@ void agregar_producto::on_Agregar_clicked()
         File_For_Writing.close();
 
         text.clear();
+
     }
 
     if(ui->cb_ap_tipo->currentIndex()==1){
@@ -112,5 +117,5 @@ void agregar_producto::on_Agregar_clicked()
         text.clear();
 
     }
-
+    */
 }

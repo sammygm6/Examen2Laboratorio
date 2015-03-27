@@ -7,7 +7,7 @@
 using std::string;
 using std::stringstream;
 
-ProductoLujo::ProductoLujo(double volumen,double peso,Cliente cliente,double tasa)
+ProductoLujo::ProductoLujo(double volumen,double peso,Cliente& cliente,double tasa)
     :Producto(volumen,peso,cliente),tasa(tasa){
 
 }
