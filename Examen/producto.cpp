@@ -38,6 +38,6 @@ Producto::~Producto()
 }
 string Producto::toString()const{
     stringstream ss;
-    ss << cliente.getNombre() << " ";
+    ss << "Nombre: " << cliente.getNombre() << " Volumen:" << volumen << " Peso: " << peso << " ";
     return ss.str();
 }
