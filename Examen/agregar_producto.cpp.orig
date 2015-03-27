@@ -9,11 +9,19 @@
 #include <vector>
 #include <string>
 
+<<<<<<< HEAD
 using std::vector;
 using std::string;
 using std::stringstream;
 
 agregar_producto::agregar_producto(QWidget *parent,vector<Producto*>*productos,vector<Cliente*>*clientes,vector<string*>*historial) :
+=======
+#include <vector>
+
+using std::vector;
+
+agregar_producto::agregar_producto(vector<Producto*>* P,vector<Cliente*>* C,QWidget *parent) :
+>>>>>>> 059b349d7770288f1057a60f2689b4d90d769fe4
     QDialog(parent),
     ui(new Ui::agregar_producto)
 {

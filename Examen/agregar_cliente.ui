@@ -1,18 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>Agregar_Cliente</class>
- <widget name="Agregar_Cliente" class="QDialog">
+ <widget class="QDialog" name="Agregar_Cliente">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>235</width>
+    <height>157</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>10</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Agregar Cliente</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>178</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="pb_cancelar">
+      <property name="text">
+       <string>Cancelar</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pb_aceptar">
+      <property name="text">
+       <string>Aceptar</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>210</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Nombre</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="le_nombre"/>
+    </item>
+   </layout>
+  </widget>
+  <zorder>pb_aceptar</zorder>
+  <zorder>pb_cancelar</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>le_nombre</zorder>
+  <zorder>pb_aceptar</zorder>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pb_cancelar</sender>
+   <signal>clicked()</signal>
+   <receiver>Agregar_Cliente</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>113</x>
+     <y>174</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>111</x>
+     <y>205</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

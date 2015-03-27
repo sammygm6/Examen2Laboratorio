@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>10</y>
+      <y>30</y>
       <width>144</width>
       <height>130</height>
      </rect>
@@ -27,30 +27,30 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="pb_agregar_cliente">
+         <property name="text">
+          <string>Agregar Cliente</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pb_agregar_producto">
          <property name="text">
           <string>Agregar Producto</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="pb_ver_historial">
          <property name="text">
           <string>Ver Historial</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QPushButton" name="pushButton">
-         <property name="text">
-          <string>Agregar Cliente</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="pb_salir">
        <property name="text">
         <string>Salir</string>
        </property>
@@ -81,5 +81,22 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pb_salir</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>77</x>
+     <y>185</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>158</x>
+     <y>167</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

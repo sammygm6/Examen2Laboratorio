@@ -1,0 +1,26 @@
+#include "mainwindow.h"
+#include <QApplication>
+#include <vector>
+#include "producto.h"
+#include "cliente.h"
+#include <string>
+
+using std::string;
+using std::vector;
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    vector<Producto*>*productos;
+    vector<string*>* historial;
+<<<<<<< HEAD
+    vector<Cliente*>* cliente;
+    MainWindow w(0,productos,cliente,historial);
+=======
+    vector<Cliente*>* clientes;
+    MainWindow w(0,productos,clientes,historial);
+>>>>>>> 43f91b1942b53a1a708e6e2cafa739dd255887a1
+    w.show();
+
+    return a.exec();
+}

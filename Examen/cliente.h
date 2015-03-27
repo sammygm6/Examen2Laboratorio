@@ -1,12 +1,18 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
+#include<string>
 
+using std::string;
 
 class Cliente
 {
+    string name;
 public:
-    Cliente();
+    Cliente(string);
+    Cliente(const Cliente&);
     ~Cliente();
+    string GetName()const;
+    void SetName();
 };
 
 #endif // CLIENTE_H
