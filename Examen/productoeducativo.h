@@ -6,14 +6,14 @@
 
 class ProductoEducativo: public Producto
 {
+    double tasa;
+    double impuesto;
 public:
-    unsigned double tasa;
-
-    ProductoEducativo(unsigned double, unsigned double, Cliente,unsigned double );
+    ProductoEducativo(double,double, Cliente,double);
     ProductoEducativo();
-    virtual unsigned double CobrarImpuesto() const;
-    unsigned double getTasa();
-    unsigned double setTasa(unsigned double);
+    virtual double CobrarImpuesto()const;
+    double getTasa()const;
+    double setTasa(double);
     ~ProductoEducativo();
 };
 

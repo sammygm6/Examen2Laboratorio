@@ -1,12 +1,38 @@
 #include "productoalcohol.h"
+#include "producto.h"
+#include "cliente.h"
+#include <sstream>
 
-ProductoAlcohol::ProductoAlcohol()
-{
+using std::stringstream;
+
+ProductoAlcohol::ProductoAlcohol(double volumen,double peso, Cliente cliente,double tasa)
+    :Producto(volumen,peso,cliente),tasa(tasa){
 
 }
 
-ProductoAlcohol::~ProductoAlcohol()
-{
+ProductoAlcohol::ProductoAlcohol(const ProductoAlcohol& other)
+    :Producto(other),tasa(tasa){
 
 }
 
+ProductoAlcohol::~ProductoAlcohol(){
+
+}
+
+string ProductoAlcohol::toString()const{
+    stringstream ss;
+    ss << Producto::toString() << " Alcohol: " << CobrarImpuesto();
+    ss.str();
+}
+
+double ProductoAlcohol::CobrarImpuesto(){
+
+}
+
+double ProductoAlcohol::getTasa()const{
+
+}
+
+void ProductoAlcohol::setTasa(double){
+
+}

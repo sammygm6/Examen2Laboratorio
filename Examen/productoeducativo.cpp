@@ -1,24 +1,28 @@
 #include "producto.h"
 #include "productoeducativo.h"
+#include <sstream>
+
+using std::stringstream;
 
 ProductoEducativo::ProductoEducativo()
 {
 
 }
 
-ProductoEducativo::ProductoEducativo(unsigned double volumen, unsigned double peso, Cliente cliente,unsigned double tasa ):Producto(volumen, peso, tasa), tasa(tasa){
+ProductoEducativo::ProductoEducativo(double volumen,double peso,Cliente cliente,double tasa )
+    :Producto(volumen,peso,cliente),tasa(tasa){
 
 }
 
-virtual unsigned double ProductoEducativo::CobrarImpuesto(){
+double ProductoEducativo::CobrarImpuesto()const{
     return getVolumen() * tasa;
 }
 
-unsigned double ProductoEducativo::getTasa(){
+double ProductoEducativo::getTasa()const{
     return tasa;
 }
 
-unsigned double ProductoEducativo::setTasa(tasa){
+double ProductoEducativo::setTasa(double tasa){
     this->tasa = tasa;
 }
 
@@ -27,3 +31,8 @@ ProductoEducativo::~ProductoEducativo()
 
 }
 
+ProductoEducativo::toString()const{
+    stringstream ss;
+    ss << Producto::toString() << " Educativo: " << CobrarImpuesto();
+    return ss.str();
+}
