@@ -22,7 +22,8 @@ public:
 
 private:
     Ui::agregar_producto *ui;
-    vector<Producto*>*
+    vector<Producto*>* productos;
+    vector<Cliente*>* clientes;
 };
 
 #endif // AGREGAR_PRODUCTO_H
