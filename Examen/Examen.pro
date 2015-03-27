@@ -13,7 +13,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-        agregar_clientes.cpp \
         agregar_producto.cpp \
         producto.cpp \
         productoeducativo.cpp \
@@ -24,7 +23,6 @@ SOURCES += main.cpp\
     ver_historial.cpp
 
 HEADERS      += mainwindow.h \
-        agregar_clientes.h \
         agregar_producto.h \
         producto.h \
         productoeducativo.h \
@@ -35,7 +33,6 @@ HEADERS      += mainwindow.h \
     ver_historial.h
 
 FORMS       += mainwindow.ui \
-      agregar_clientes.ui \
       agregar_producto.ui \
     agregar_producto_educativo.ui \
     agregar_producto_alcoholico.ui \
