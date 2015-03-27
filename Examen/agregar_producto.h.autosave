@@ -1,0 +1,28 @@
+#ifndef AGREGAR_PRODUCTO_H
+#define AGREGAR_PRODUCTO_H
+
+#include <QDialog>
+#include <vector>
+#include "Cliente.h"
+#include "Producto.h"
+
+using std::vector;
+
+namespace Ui {
+class agregar_producto;
+}
+
+class agregar_producto : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit agregar_producto(vector<Producto*>*,vector<Cliente*>*,QWidget *parent = 0);
+    ~agregar_producto();
+
+private:
+    Ui::agregar_producto *ui;
+    vector<Producto*>*
+};
+
+#endif // AGREGAR_PRODUCTO_H

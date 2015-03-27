@@ -13,8 +13,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    agregar_clientes.cpp \
+    agregar_producto.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    agregar_clientes.h \
+    agregar_producto.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    agregar_clientes.ui \
+    agregar_producto.ui
