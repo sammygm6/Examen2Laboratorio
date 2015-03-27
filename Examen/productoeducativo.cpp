@@ -32,7 +32,7 @@ ProductoEducativo::~ProductoEducativo()
 
 }
 
-ProductoEducativo::toString()const{
+string ProductoEducativo::toString()const{
     stringstream ss;
     ss << Producto::toString() << " Educativo: " << CobrarImpuesto();
     return ss.str();

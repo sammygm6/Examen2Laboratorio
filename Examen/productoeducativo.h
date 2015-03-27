@@ -12,6 +12,7 @@ public:
     ProductoEducativo(double,double, Cliente&,double);
     ProductoEducativo(const ProductoEducativo&);
     virtual double CobrarImpuesto()const;
+    virtual string toString()const;
     double getTasa()const;
     double setTasa(double);
     ~ProductoEducativo();

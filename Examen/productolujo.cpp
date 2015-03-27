@@ -24,11 +24,10 @@ ProductoLujo::~ProductoLujo(){
 string ProductoLujo::toString()const{
 
     stringstream ss;
-    ss << Producto::toString() << " Lujo: " << impuesto;
+    ss << Producto::toString() << " Lujo: " << CobrarImpuesto();
     return ss.str();
 }
 double ProductoLujo::CobrarImpuesto()const{
-    impuesto = (this->getPeso()*this->getTasa()) + (this->getVolumen()*this->getTasa());
     return (this->getPeso()*getTasa()) + (this->getVolumen()*this->getTasa());
 }
 

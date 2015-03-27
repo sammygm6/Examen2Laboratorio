@@ -23,9 +23,9 @@ Agregar_Cliente::~Agregar_Cliente()
 
 void Agregar_Cliente::on_pb_aceptar_clicked()
 {
-    string nombre=ui->le_nombre->text(QString().toStdString());
+    string nombre=ui->le_nombre->text().toStdString();
     if(nombre==""||nombre==" "){
-        QMessageBox::Information(this,tr("Error"),tr("No escribio un nombre"));
+        QMessageBox::information(this,tr("Error"),tr("No escribio un nombre"));
     }else{
         Cliente* cliente=new Cliente(nombre);
         clientes->push_back(cliente);

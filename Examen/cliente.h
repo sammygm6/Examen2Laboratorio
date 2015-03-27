@@ -12,7 +12,7 @@ public:
     Cliente(const Cliente&);
     ~Cliente();
     string GetName()const;
-    void SetName();
+    void SetName(string);
 };
 
 #endif // CLIENTE_H

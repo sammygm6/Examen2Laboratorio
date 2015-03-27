@@ -11,7 +11,7 @@
 using std::vector;
 using std::string;
 
-Ver_Historial::Ver_Historial(QWidget *parent,vector<string*> historial) :
+Ver_Historial::Ver_Historial(QWidget *parent,vector<string*>* historial) :
     QDialog(parent),
     ui(new Ui::Ver_Historial)
 {
@@ -35,7 +35,7 @@ void Ver_Historial::on_VerHistorial_clicked()
        text_stream_for_reading.readAll();
 
        QString text;
-       text << text_stream_for_reading;
+       //text << text_stream_for_reading;
 
      file_for_reading.close();
 

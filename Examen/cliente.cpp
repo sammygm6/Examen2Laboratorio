@@ -8,7 +8,8 @@ Cliente::Cliente(string name):name(name)
 
 }
 
-Cliente::Cliente(const Cliente& other):Cliente(other){
+Cliente::Cliente(const Cliente& other)
+    :Cliente(other.name){
 
 }
 
